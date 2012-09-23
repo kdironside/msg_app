@@ -1,0 +1,193 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require bootstrap_and_overrides
+ *= require_self
+ *= require_tree .
+*/
+
+
+/* ----------------- overall page behavior -----------------------------*/
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+	margin: 0;
+}
+
+ol, td {
+	padding: .325em;
+}
+
+.td  {
+  padding-right: 3em;
+}
+
+
+textarea {
+  width: 33em;
+  height: 15em;
+}
+
+html { 
+	background-color: transparent;
+	height: 100%;
+}
+
+body {
+	font-family: Kreon,"Times New Roman",serif;
+	font-size: 1em;
+	font-weight: 400;
+	height: 100%;
+	min-height: 100%;
+	padding-top: 0;	
+} 
+
+#main {
+  float: none;
+	padding-top: 2.8%;
+	margin: 2em 0 0 1em;
+	min-height: 100%;
+}
+
+/* Brand Name */
+.navbar .brand {
+	font-family: Kreon,"Times New Roman",serif;
+  font-size: 2em;
+	opacity: none;
+  padding: .325em .75em;
+}
+
+/* navigation items position on the nav bar */
+.navbar .nav  {
+  display: block;
+  float: right;
+	font-weight: normal;
+	margin-right: 2em;
+}
+
+/* The 'hello <name> text in the navigaton bar */
+
+.navbar .navbar-text {
+	color: #FFFFFF;
+	font-weight: normal;
+  line-height: 2.5em;
+  padding: 0 1em;
+}
+
+/* navigation list items (links) */
+.navbar .nav > li > a {
+  font-size: 1em;
+  line-height: 1.125em;
+  padding: .75em .5em;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+@media screen and (max-width: 480px)  {
+.navbar .nav > li > a {
+  font-size: 1em;
+  padding: .5em .5em;
+	margin-bottom: .625em;
+	margin-top: .5em;
+
+	} 
+}
+
+/* ------------- top for static pages except home/index page ------------------*/
+#page-top {
+	color: #FFFFFF;
+	margin-top: 2em;
+}
+
+@media screen and (max-width: 960px)  {
+  #page-top {
+	margin: 0;
+	} 
+}
+
+
+
+/*-------- content and hero-uit are the bordered text boxes within the grid system ---------*/
+
+.content {
+	background-color: #2B2B2B; 
+  border: .215em solid #666666;
+  border-radius: 2.5em;
+	color: #FFFFFF;
+	font-size: 1.125em;
+  margin: 0 -.5em 1em -.5em;
+  padding: 1.25em;
+	min-width: 12em;
+/*	opacity: 0.9;*/
+ 		ul li {
+			line-height: 1.25em;
+			margin-bottom: .938em;
+		}	
+		p {
+			color: #FFFFFF;	
+			font-size: 1.125em;
+			letter-spacing: .03125em;
+			margin-bottom: 0;
+			padding: .5em;
+		}	
+}
+
+@media screen and (max-width: 768px) and (min-width: 480px) {
+  .content {
+	min-width: 14em;
+	} 
+}
+
+.hero-unit {
+  border: .2em solid #777777;
+  border-radius: 2.5em;
+  margin-top: 1em;
+  padding: 1.25em 2em 1.25em;
+		p {
+			font-family: Kreon,"Times New Roman","Trebuchet MS",Palatino,serif;
+			font-size: 1em;
+			line-height: 1.125em;
+		}	
+}
+
+@media screen and (max-width: 700px)  {
+  .hero-unit {
+	margin: 0;
+	} 
+}
+
+
+
+
+
+/*@media screen and (max-width: 768px) {
+  .align-right {
+		float: left;
+	} 
+}*/
+
+/* -----------------custom footer for all pages -----------------------------*/
+
+.center {
+	text-align: center;
+}
+
+.footer-brand {
+	font-family: Kreon,"Times New Roman",serif;
+}
+
+#footer {
+  background-color: transparent; /* #333333; */
+	border-top: 1px solid #FFFFFF;
+	color: #FFFFFF;
+	font-size: 1em;
+	margin: .25em 0 2em;
+  padding: 1.8753em .625em 1.875em;
+}
+

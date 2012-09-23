@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Email:</b>
+  <%= @user.email %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @user.name %>
+</p>
+
+<p>
+  <b>Screen name:</b>
+  <%= @user.screen_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user), :class => 'btn btn-large btn-inverse' %> 
+<%= link_to 'All Users', users_path, :class => 'btn btn-large btn-success' %>
+<%= link_to 'Conversations', user_conversations_path(@user), :class => 'btn btn-large btn-success' %>

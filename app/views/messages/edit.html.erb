@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>From:</b>
+	<% if @message.source_id == @user.id %>
+		<%= @user.screen_name %>
+	<% elsif @message.source_id == @other_user.id %>
+		<%= @other_user.screen_name %>
+	<% else %>
+	  [deleted member]
+	<% end %>
+</p>
+<br />
+<p>
+  <b>Msg text:</b>
+  <%= @message.msg_text %>
+</p>
+<br />
+<%= form_for [@conversation, @message], :method => :put do |f| %>
+  <%= f.hidden_field :read %>
+	<%= f.submit 'Back', :class => 'btn btn-large btn-success' %>
+<% end %>

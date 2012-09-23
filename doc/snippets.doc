@@ -1,0 +1,53 @@
+Yup, I've implemented one. Really easy to roll your own, particularly if
+you're using REST. My model is really simple, with just a few
+validations and utility methods:
+
+class Message < ActiveRecord::Base
+  validates_presence_of :title, :body, :recipient_id, :sender_id
+  belongs_to :sender, :class_name => "User", :foreign_key => "sender_id"
+  belongs_to :recipient, :class_name => "User", :foreign_key =>
+"recipient_id"
+  attr_accessible :title, :body, :recipient_id
+
+  # aliases read_at accessor attribute to make it read more nicely
+  def read?
+    read_at
+  end
+
+  # returns the opposite_party in the message to given user. So if the
+given user is the recipient,
+  # this method returns the sender and vice versa. If the given user is
+neither a recipient nor sender
+  # (e.g. because they're an editor) it returns the recipient. If the
+given user is nil (e.g. because
+  # the current_user is nil) an exception is raised
+  def partner_to(user)
+    raise ArgumentError unless user
+    user.id == recipient_id ? sender : recipient
+  end
+end
+
+In User model (which is based on acts_as_authenticated), I've got the
+following associations:
+
+  has_many :sent_messages, :class_name => "Message", :foreign_key =>
+"sender_id", :order => 'created_at DESC'
+  has_many :received_messages, :class_name => "Message", :foreign_key =>
+"recipient_id", :conditions => ['deleted_at IS NULL'], :order =>
+'created_at DESC'
+  has_many :unread_messages, :class_name => "Message", :foreign_key =>
+"recipient_id", :conditions => ['read_at IS NULL AND deleted_at IS
+NULL'], :order => 'created_at DESC'
+
+The schema for the Message class is:
+  create_table "messages", :force => true do |t|
+    t.column "title",        :string
+    t.column "body",         :text
+    t.column "recipient_id", :integer
+    t.column "sender_id",    :integer
+    t.column "created_at",   :datetime
+    t.column "deleted_at",   :datetime
+    t.column "read_at",      :datetime
+end
+
+Hopefully should be enough to get you started. 

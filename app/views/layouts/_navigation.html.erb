@@ -1,0 +1,14 @@
+<%= link_to "Message App", root_path, :class => 'brand' %>
+
+<span class="navbar-text">
+	<% if @user %>
+		Hello, <%= @user.name %>
+	<% end %>
+</span>	
+	
+<ul class="nav">	
+  <%  %>
+    <li><%= link_to 'Home', root_path %></li>
+    <li><%= link_to 'Switch User', users_path %></li>
+</ul>
+

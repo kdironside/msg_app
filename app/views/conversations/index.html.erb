@@ -1,0 +1,29 @@
+<h2><%= @user.screen_name %>'s Conversations</h2>
+<br />
+<% if @conversations.count > 0 %>
+	<table>
+	  <tr>
+	    <th>Me</th>
+	    <th>Them</th>
+	    <th></th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+
+	<% @conversations.each do |c| %>
+	  <tr>
+	    <td><%= @user.screen_name %></td>
+	    <td><%= c.other_screen_name %></td>
+	    <td><%= link_to 'Show Conversation', conversation_messages_path(c.id), :class => 'btn btn-small btn-success' %></td>
+	    <td><%= link_to 'Destroy', user_conversation_path(@user, c.id), :class => 'btn btn-small btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	  </tr>
+	<% end %>
+	</table>
+<% else %>
+	<p>You have no conversations yet. </p>
+<% end %>
+
+<br />
+
+<%= link_to 'Start a new Conversation', new_user_conversation_path(@user), :class => 'btn btn-large btn-success' %>
+<%= link_to 'Back to User Show Page', user_path(@user), :class => 'btn btn-large btn-success' %>

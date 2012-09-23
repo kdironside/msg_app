@@ -1,0 +1,43 @@
+<h2><%= @conversation.user_screen_name %>'s messages with <%= @conversation.other_screen_name %></h2>
+<br />
+<% if @messages.count > 0 %>
+	<table>
+	  <tr>
+	    <th class='td'>Sender</th>
+	    <th class='td'>Sent At</th>
+	    <th class='td'>Msg text</th>
+	    <th class='td'>Read?</th>
+	    <th></th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+
+	<% @messages.each do |message| %>
+	  <tr>
+	    <td class='td'>
+				<% if message.source_id == @user.id %>
+					<%= @user.screen_name %>
+				<% elsif message.source_id == @other_user.id %>
+					<%= @other_user.screen_name %>
+				<% else %>
+				  [deleted member]
+				<% end %>
+			</td>
+	    <td class='td'><%= message.created_at.to_s %></td>
+	    <td class='td'><%= message.msg_text[0,24] %>...</td>
+	    <td class='td'><%= '<i class="icon-ok"></i>'.html_safe if message.read? %></td>
+
+	    <td><%= link_to 'Read it', edit_conversation_message_path(@conversation.id,message.id), :class => 'btn btn-small btn-success' %></td>
+	    <td><%= link_to 'Destroy', conversation_message_path(@conversation.id,message.id), :class => 'btn btn-small btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	  </tr>
+	<% end %>
+	</table>
+<% else %>
+	<p>There are no messages in this conversation.</p>
+<% end %>
+<br />
+
+<%if @conversation.other_screen_name != '[deleted]' %>
+	<%= link_to 'New Message', new_conversation_message_path(@conversation.id), :class => 'btn btn-large btn-success' %>
+<% end %>	
+<%= link_to 'All Conversations', user_conversations_path(@conversation.user_id), :class => 'btn btn-large btn-success' %>

@@ -1,0 +1,33 @@
+<%= form_for [@conversation, @message], :method => :post do |f| %>
+  <% if @message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+
+      <ul>
+      <% @message.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<br />
+  <div>
+    <p>From: <%= @conversation.user_screen_name %></p>
+    <%= f.hidden_field :user_id %>
+  </div>
+  <div>
+    <p>To: <%= @conversation.other_screen_name %></p>
+
+  </div>
+  <div class="field">
+    <%= f.label :your_message %>
+    <%= f.text_area :msg_text %>
+  </div>
+  <div>
+    <%= f.hidden_field :read %>
+  </div>
+  <div>
+    <%= f.submit 'Send', :class => 'btn btn-large btn-success' %>
+		<%= link_to 'Back', conversation_messages_path(@conversation.id), :class => 'btn btn-large btn-success' %>
+  </div>
+<% end %>
