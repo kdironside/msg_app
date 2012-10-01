@@ -12,11 +12,11 @@
   <% end %>
 <br />
   <div>
-    <p>From: <%= @conversation.user_screen_name %></p>
+    <p>From: <%= @user.screen_name %></p>
     <%= f.hidden_field :user_id %>
   </div>
   <div>
-    <p>To: <%= @conversation.other_screen_name %></p>
+    <p>To: <%= @other_user.screen_name %></p>
 
   </div>
   <div class="field">
