@@ -1,5 +1,12 @@
-<h2><%= @user.screen_name %>'s messages with <%= @other_user.screen_name %></h2>
+<h2><%= @user.screen_name %>'s messages with 
+	<% if @other_user.try(:screen_name) %>
+		<%= @other_user.screen_name %>
+	<% else %>
+	  [a deleted member!]
+	<% end %>
+	</h2>
 <br />
+
 <% if @messages.count > 0 %>
 	<table>
 	  <tr>
@@ -17,7 +24,7 @@
 	    <td class='td'>
 				<% if message.source_id == @user.id %>
 					<%= @user.screen_name %>
-				<% elsif message.source_id == @other_user.id %>
+				<% elsif @other_user.try(:screen_name) %>
 					<%= @other_user.screen_name %>
 				<% else %>
 				  [deleted member]
@@ -37,7 +44,7 @@
 <% end %>
 <br />
 
-<%if @conversation.other_screen_name != '[deleted]' %>
+<%if !@other_user.nil? %>
 	<%= link_to 'New Message', new_conversation_message_path(@conversation.id), :class => 'btn btn-large btn-success' %>
 <% end %>	
 <%= link_to 'All Conversations', user_conversations_path(@conversation.user_id), :class => 'btn btn-large btn-success' %>

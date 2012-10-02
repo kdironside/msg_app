@@ -106,17 +106,13 @@ class MessagesController < ApplicationController
     @user = User.find(@conversation.user_id)
   end 
   
+  # if deleted member, @other_user will be nil
   def the_other_user
     @other_user = User.find_by_id(@conversation.other_id) 
-    if @other_user.present?
-      @other_user.screen_name
-    else
-      'DELETED'
-    end
   end 
   
   def create_other_message
-    if the_other_user != 'DELETED'
+    if !the_other_user.nil?
       @other_message = Message.new
       @other_message.user_id = @conversation.other_id
       @other_message.source_id = @message.source_id
@@ -124,7 +120,6 @@ class MessagesController < ApplicationController
       @other_conversation = Conversation.find_or_create_by_user_id_and_other_id(@conversation.other_id,@conversation.user_id)
       @other_message.conversation_id = @other_conversation.id
       @other_message.msg_text = @message.msg_text
-      logger.info @other_message.inspect
       @other_message.save
       flash[:notice] = 'Yay, an "Other" Message was created.'
     end

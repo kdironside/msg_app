@@ -4,7 +4,7 @@
   <b>From:</b>
 	<% if @message.source_id == @user.id %>
 		<%= @user.screen_name %>
-	<% elsif @message.source_id == @other_user.id %>
+	<% elsif @other_user.try(:screen_name) %>
 		<%= @other_user.screen_name %>
 	<% else %>
 	  [deleted member]

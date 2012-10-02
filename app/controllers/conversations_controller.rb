@@ -65,7 +65,7 @@ class ConversationsController < ApplicationController
   end
     
   def find_or_create_conversation
-    logger.debug 'USER CONVERSATIONS -> CONVERSATION FIND OR CREATE ---------------------------------'
+    # logger.debug 'USER CONVERSATIONS -> CONVERSATION FIND OR CREATE ---------------------------------'
     @conversation = Conversation.find_or_create_by_user_id_and_other_id(@user.id,@other_user.id)
     flash[:notice] = 'Yay'
   end
