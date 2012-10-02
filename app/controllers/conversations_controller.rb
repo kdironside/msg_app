@@ -2,7 +2,6 @@ class ConversationsController < ApplicationController
   before_filter :the_user
   before_filter :the_other_user, :only => [:create]
   before_filter :find_or_create_conversation, :only => [:create]
-
   
   # GET /conversations
   def index
@@ -65,10 +64,9 @@ class ConversationsController < ApplicationController
   end
     
   def find_or_create_conversation
-    # logger.debug 'USER CONVERSATIONS -> CONVERSATION FIND OR CREATE ---------------------------------'
     @conversation = Conversation.find_or_create_by_user_id_and_other_id(@user.id,@other_user.id)
     flash[:notice] = 'Yay'
   end
   
 end  
-      # @conversation = Conversation.create!(params[:conversation])
+     

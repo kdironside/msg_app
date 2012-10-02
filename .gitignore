@@ -32,11 +32,7 @@ db/*.sqlite3
 /coverage/
 /db/*.javadb/
 /db/*.sqlite3-journal
-/doc/api/
-/doc/app/
-/doc/*.txt
-/doc/features.html
-/doc/specs.html
+/doc  
 /public/cache
 /public/stylesheets/compiled
 /public/system

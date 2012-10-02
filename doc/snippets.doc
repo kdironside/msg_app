@@ -1,3 +1,23 @@
+This was replaced with find_or_create_by_.........
+ 
+# @conversation = Conversation.create!(params[:conversation])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Yup, I've implemented one. Really easy to roll your own, particularly if
 you're using REST. My model is really simple, with just a few
 validations and utility methods:
