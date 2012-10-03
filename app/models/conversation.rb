@@ -1,7 +1,7 @@
 class Conversation < ActiveRecord::Base
   attr_accessible :other_id, :user_id
   
-  belongs_to :user 
+  belongs_to :user
   has_many :messages, :dependent => :destroy   
                       
   def other_screen_name

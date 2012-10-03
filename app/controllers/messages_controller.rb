@@ -30,8 +30,7 @@ class MessagesController < ApplicationController
   # The benefit of this approach is there are no data dependencies among/between users so it's 
   # easy to manage the data programmatically. The management lies independently with each user. They
   # are free to delete conversations (and dependent messages). Furthering a deleted conversation restarts  
-  # the thread, showing only new messages. This is same functionality as with Gmail and Facebook internal 
-  # messaging.
+  # the thread, showing only new messages. 
    
   # GET /messages/new
   def new
